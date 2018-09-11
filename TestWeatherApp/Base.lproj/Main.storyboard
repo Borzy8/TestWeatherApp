@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="TestWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +17,60 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XaF-2J-qW4"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLV-0v-be2">
+                                <frame key="frameInset" minX="59" minY="506" width="257" height="59"/>
+                                <color key="backgroundColor" red="1" green="0.34950642799906095" blue="0.98348018291564243" alpha="0.65972521551724139" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="   Weather Forecast   ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="7zD-IF-i4a" kind="presentation" identifier="ShowForecast" id="mqB-vr-Lds"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="XaF-2J-qW4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4RT-Uv-sxX"/>
+                            <constraint firstItem="sLV-0v-be2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CPr-of-jDt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sLV-0v-be2" secondAttribute="bottom" constant="102" id="Ddw-Zm-heH"/>
+                            <constraint firstItem="XaF-2J-qW4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Uht-9z-aQE"/>
+                            <constraint firstAttribute="trailing" secondItem="XaF-2J-qW4" secondAttribute="trailing" id="bOd-nn-vJy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XaF-2J-qW4" secondAttribute="bottom" id="fCa-PK-Q5p"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="XaF-2J-qW4" id="vkE-fU-Jyp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="156" y="175.86206896551727"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="RuU-Zj-fE5">
+            <objects>
+                <viewController id="7zD-IF-i4a" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HiG-bM-461"/>
+                        <viewControllerLayoutGuide type="bottom" id="HTj-jS-d85"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fNH-I7-lIW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nMb-ea-2sH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1098" y="179"/>
         </scene>
     </scenes>
 </document>

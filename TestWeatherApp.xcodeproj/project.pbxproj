@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		89612F7A2146DDCE00CAF0A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89612F792146DDCE00CAF0A1 /* AppDelegate.swift */; };
-		89612F7C2146DDCE00CAF0A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89612F7B2146DDCE00CAF0A1 /* ViewController.swift */; };
+		89612F7C2146DDCE00CAF0A1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89612F7B2146DDCE00CAF0A1 /* MapViewController.swift */; };
 		89612F7F2146DDCE00CAF0A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89612F7D2146DDCE00CAF0A1 /* Main.storyboard */; };
 		89612F812146DDCE00CAF0A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89612F802146DDCE00CAF0A1 /* Assets.xcassets */; };
 		89612F842146DDCE00CAF0A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89612F822146DDCE00CAF0A1 /* LaunchScreen.storyboard */; };
+		89612F8D2146DE8B00CAF0A1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89612F8C2146DE8B00CAF0A1 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		89612F762146DDCE00CAF0A1 /* TestWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89612F792146DDCE00CAF0A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		89612F7B2146DDCE00CAF0A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		89612F7B2146DDCE00CAF0A1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		89612F7E2146DDCE00CAF0A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89612F802146DDCE00CAF0A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89612F832146DDCE00CAF0A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89612F852146DDCE00CAF0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89612F8C2146DE8B00CAF0A1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89612F8D2146DE8B00CAF0A1 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +43,7 @@
 			children = (
 				89612F782146DDCE00CAF0A1 /* TestWeatherApp */,
 				89612F772146DDCE00CAF0A1 /* Products */,
+				89612F8B2146DE8B00CAF0A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +59,21 @@
 			isa = PBXGroup;
 			children = (
 				89612F792146DDCE00CAF0A1 /* AppDelegate.swift */,
-				89612F7B2146DDCE00CAF0A1 /* ViewController.swift */,
+				89612F7B2146DDCE00CAF0A1 /* MapViewController.swift */,
 				89612F7D2146DDCE00CAF0A1 /* Main.storyboard */,
 				89612F802146DDCE00CAF0A1 /* Assets.xcassets */,
 				89612F822146DDCE00CAF0A1 /* LaunchScreen.storyboard */,
 				89612F852146DDCE00CAF0A1 /* Info.plist */,
 			);
 			path = TestWeatherApp;
+			sourceTree = "<group>";
+		};
+		89612F8B2146DE8B00CAF0A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89612F8C2146DE8B00CAF0A1 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,7 +108,13 @@
 				TargetAttributes = {
 					89612F752146DDCE00CAF0A1 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 62488Q89EJ;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -136,7 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89612F7C2146DDCE00CAF0A1 /* ViewController.swift in Sources */,
+				89612F7C2146DDCE00CAF0A1 /* MapViewController.swift in Sources */,
 				89612F7A2146DDCE00CAF0A1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 62488Q89EJ;
 				INFOPLIST_FILE = TestWeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = void.TestWeatherApp;
@@ -270,6 +289,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 62488Q89EJ;
 				INFOPLIST_FILE = TestWeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = void.TestWeatherApp;
