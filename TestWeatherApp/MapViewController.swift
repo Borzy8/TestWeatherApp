@@ -22,33 +22,32 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let authStatus = CLLocationManager.authorizationStatus()
-        print("*****")
-        print(authStatus.rawValue)
-        if authStatus == .notDetermined {
-            print("************")
-            locationManager.requestWhenInUseAuthorization()
-            return
-        }
-        
+       
+        checkAuthStatus()
+        mapSetup()
+    }
+    
+    func mapSetup () {
         mapView.delegate = self;
-        
         
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(addAnnotation))
         gestureRecognizer.minimumPressDuration = 1.0;
         mapView.addGestureRecognizer(gestureRecognizer);
         
         startLocationManager()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func checkAuthStatus() {
+        let authStatus = CLLocationManager.authorizationStatus()
+        
+        if authStatus == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+            mapSetup()
+            return
+        }
     }
 
     func addAnnotation(gestRecognizer: UIGestureRecognizer?, location: CLLocation?) {
-        print("Annotation added")
         
         guard let gestRecognizer = gestRecognizer else {
             
@@ -78,11 +77,9 @@ class MapViewController: UIViewController {
             
             self.location = CLLocation(latitude: newCoordinate.latitude, longitude
                 : newCoordinate.longitude)
-            print(newCoordinate);
             
             let annotation = MKPointAnnotation();
             annotation.coordinate = newCoordinate;
-            annotation.title = "Title"
             
             mapView.addAnnotation(annotation);
            
@@ -90,12 +87,22 @@ class MapViewController: UIViewController {
             
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowForecast" {
+            let forecastController = segue.destination as! ForecastViewController
+            forecastController.location = location;
+        }
+    }
+    
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+        
+    }
 }
 
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("DELEGATE")
         let identifier = "MapAnnotationView";
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         
@@ -108,7 +115,6 @@ extension MapViewController: MKMapViewDelegate {
             pinView.image = UIImage(named: "pin-logo");
             pinView.centerOffset = CGPoint(x: 0, y: -pinView.image!.size.height/2)
             
-            
             annotationView = pinView
         } else {
            
@@ -116,21 +122,6 @@ extension MapViewController: MKMapViewDelegate {
         
         return annotationView
     }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        switch newState {
-        case .starting:
-            view.dragState = .dragging;
-            print(view.annotation?.coordinate)
-        case .canceling,.ending:
-            view.dragState = .none
-            print(view.annotation?.coordinate)
-        default:
-            break
-        }
-    }
-    
-   
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -139,14 +130,14 @@ extension MapViewController: CLLocationManagerDelegate {
         
         if let location = locations.last {
             self.location = location
-            print(location)
             addAnnotation(gestRecognizer: nil, location: location);
             stopLocationManager()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error);
+        stopLocationManager()
+        showLocationManagerError()
     }
     
     func startLocationManager() {
@@ -155,8 +146,17 @@ extension MapViewController: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
     }
+    
     func stopLocationManager() {
         locationManager.stopUpdatingLocation();
         locationManager.delegate = nil;
+    }
+    
+    func showLocationManagerError() {
+        let alert = UIAlertController(title: "Location error", message: "Can‘t get location, plaease, try again later.", preferredStyle: .alert);
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction);
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
